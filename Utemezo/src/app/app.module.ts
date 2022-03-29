@@ -6,12 +6,16 @@ import { ProcessConfiguratorComponent } from './process-configurator/process-con
 import {ProcessService} from "./services/process-service";
 import {FormsModule} from "@angular/forms";
 import { ProcessSchedulerComponent } from './process-scheduler/process-scheduler.component';
+import { ScheduleResultPanelComponent } from './schedule-result-panel/schedule-result-panel.component';
+import { UsageMatrixComponent } from './schedule-result-panel/usage-matrix/usage-matrix.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProcessConfiguratorComponent,
-    ProcessSchedulerComponent
+    ProcessSchedulerComponent,
+    ScheduleResultPanelComponent,
+    UsageMatrixComponent
   ],
   imports: [
     BrowserModule,

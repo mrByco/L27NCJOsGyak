@@ -3,6 +3,7 @@ import {SchedulerArgorithm} from "../algorithms/scheduler-argorithm";
 import {ProcessModel} from "../services/process-model";
 import {Fcfs} from "../algorithms/fcfs";
 import {ProcessService} from "../services/process-service";
+import {Sjf} from "../algorithms/sjf";
 
 @Component({
   selector: 'app-process-scheduler',
@@ -14,20 +15,24 @@ export class ProcessSchedulerComponent {
   public selectedAlgorithm: string = "";
 
   public readonly selectableAlgorithms: {name: string, create: (processes: ProcessModel[]) => SchedulerArgorithm}[] = [
-    {name: "Fcfs", create: (processes => new Fcfs(processes))},
-    {name: "Sjf", create: (processes => new Fcfs(processes))},
+    {name: "FCFS", create: (processes => new Fcfs(processes))},
+    {name: "SJF", create: (processes => new Sjf(processes))},
     {name: "Round robin", create: (processes => new Fcfs(processes))}
   ];
 
   constructor(public processService: ProcessService) { }
 
   selectAlgorithm(name: string) {
-    console.log(name);
     this.selectedAlgorithm = name;
+    this.process();
   }
 
-  Process() {
-    this.processService.algortihm = this.selectableAlgorithms.find(a => a.name == this.selectedAlgorithm)?.create(this.processService.processes);
+  private process() {
+    let algorithm = this.selectableAlgorithms.find(a => a.name == this.selectedAlgorithm)?.create(this.processService.processes);
+    console.log(algorithm)
+    if (algorithm == undefined) return;
+    this.processService.algortihm = algorithm;
+    console.log(this.processService.algortihm)
     this.processService.algortihm?.process();
   }
 }

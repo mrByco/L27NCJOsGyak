@@ -1,24 +1,26 @@
-<div class="container">
+<div class="container panel-background">
+    <div class="d-flex flex-column align-items-center">
+        <h4>Add processes</h4>
+        <hr style="width: 100%">
 
-    <div class="col">
-        <h4>Processes</h4>
-        <div class="row" *ngFor="let process of processService.processes; let i = index">
-            {{i}}. process, arrive: {{process.arrival}}, process: {{process.cpu_time}}ms
-        </div>
         <div class="d-flex flex-row">
-            <div class="form-group">
-                <label for="arriveTime">Arrive</label>
-                <input [(ngModel)]="newProcessTime" type="number" class="form-control" id="arriveTime" aria-describedby="arrive" placeholder="Arrive time">
+            <div class="d-flex flex-column" style="margin-right: 1rem">
+                <h4 style="color: transparent">P0 </h4>
+                <h2 class="process-title" *ngFor="let process of processService.processes; let i = index">P{{i + 1}}:</h2>
             </div>
-
-            <div class="form-group">
-                <label for="cpuTime">Process time</label>
-                <input [(ngModel)]="newProcessArrival" type="number" class="form-control" id="cpuTime" aria-describedby="arrive" placeholder="Process time">
+            <div class="d-flex flex-column">
+                <h4>Arrive</h4>
+                <h2 class="process-title"  *ngFor="let process of processService.processes; let i = index">{{process.arrival}}</h2>
+                <input [(ngModel)]="newProcessArrival" type="number" class="form-control" id="arriveTime" aria-describedby="arrive" placeholder="Arrive time">
             </div>
-
-            <button class="btn btn-primary" (click)="addProcess()">Add</button>
-
-
+            <div class="d-flex flex-column">
+                <h4>Process time</h4>
+                <h2 class="process-title"  *ngFor="let process of processService.processes; let i = index">{{process.cpu_time}}</h2>
+                <input [(ngModel)]="newProcessTime" type="number" class="form-control" id="cpuTime" aria-describedby="arrive" placeholder="Process time">
+            </div>
+            <div class="d-flex flex-column align-items-end">
+                <button class="btn btn-primary mt-auto" (click)="addProcess()">Add</button>
+            </div>
         </div>
     </div>
 </div>

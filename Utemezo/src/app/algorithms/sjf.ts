@@ -1,6 +1,6 @@
 import {SchedulerArgorithm} from "./scheduler-argorithm";
 
-export class Fcfs extends SchedulerArgorithm {
+export class Sjf extends SchedulerArgorithm {
 
     calculate(): void {
         let processesDone = 0;
@@ -8,7 +8,7 @@ export class Fcfs extends SchedulerArgorithm {
 
         this.result = [];
         while (processesDone < this.processes.length) {
-            console.log(waitingProcesses);
+            console.log(waitingProcesses.length)
             let processesArriving = this.processes.filter(p => p.arrival == this.result.length);
             waitingProcesses.push(...processesArriving.map(p => {
                 return {pid: this.processes.indexOf(p), timeLeft: p.cpu_time}
@@ -17,6 +17,7 @@ export class Fcfs extends SchedulerArgorithm {
             if (waitingProcesses.length > 0 && waitingProcesses[0].timeLeft == 0) {
                 waitingProcesses.shift();
                 processesDone++;
+                waitingProcesses = waitingProcesses.sort((p1, p2) => p1.timeLeft - p2.timeLeft);
             }
 
             if (waitingProcesses.length > 0) {

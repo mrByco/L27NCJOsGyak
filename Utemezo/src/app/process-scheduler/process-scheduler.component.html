@@ -1,8 +1,7 @@
 
-<div class="container">
-    <div class="d-flex">
-        <button *ngFor="let algo of selectableAlgorithms" class="btn m-1"
-                [ngClass]="{'btn-success': selectedAlgorithm == algo.name}" (click)="selectAlgorithm(algo.name)">{{algo.name}}</button>
-        <button class="btn btn-danger" style="margin-left: 4rem" (click)="Process()">Process!</button>
+<div class="container panel-background p-0">
+    <div class="d-flex align-items-center justify-content-evenly">
+        <button *ngFor="let algo of selectableAlgorithms" class="algorithm-button"
+                [ngClass]="{'algorithm-button-selected': selectedAlgorithm == algo.name}" (click)="selectAlgorithm(algo.name)">{{algo.name}}</button>
     </div>
 </div>
