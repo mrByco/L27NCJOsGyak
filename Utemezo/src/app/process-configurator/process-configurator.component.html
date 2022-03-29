@@ -1,0 +1,24 @@
+<div class="container">
+
+    <div class="col">
+        <h4>Processes</h4>
+        <div class="row" *ngFor="let process of processService.processes; let i = index">
+            {{i}}. process, arrive: {{process.arrival}}, process: {{process.cpu_time}}ms
+        </div>
+        <div class="d-flex flex-row">
+            <div class="form-group">
+                <label for="arriveTime">Arrive</label>
+                <input [(ngModel)]="newProcessTime" type="number" class="form-control" id="arriveTime" aria-describedby="arrive" placeholder="Arrive time">
+            </div>
+
+            <div class="form-group">
+                <label for="cpuTime">Process time</label>
+                <input [(ngModel)]="newProcessArrival" type="number" class="form-control" id="cpuTime" aria-describedby="arrive" placeholder="Process time">
+            </div>
+
+            <button class="btn btn-primary" (click)="addProcess()">Add</button>
+
+
+        </div>
+    </div>
+</div>
