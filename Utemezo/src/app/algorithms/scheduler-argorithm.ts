@@ -4,6 +4,9 @@ import {ProcessStatus} from "../schedule-result-panel/usage-matrix/process-statu
 export type SchedulingResult = {running: number | null, waiting: number[]}[];
 
 export abstract class SchedulerArgorithm {
+    protected processesDone = 0;
+    protected waitingProcesses: { pid: number, timeLeft: number }[] = [];
+
     public result: SchedulingResult = []
 
     constructor(public processes: ProcessModel[]){
@@ -44,5 +47,40 @@ export abstract class SchedulerArgorithm {
                 });
         }
         console.log(this.processUsageMatrix);
+    }
+
+    protected initializeAlgorithm() {
+        this.processesDone = 0;
+        this.waitingProcesses = [];
+        this.result = [];
+    }
+
+    protected recordTimeSlice() {
+        this.result.push({
+            running: this.waitingProcesses[0]?.pid ?? null,
+            waiting: this.waitingProcesses.length > 1 ? this.waitingProcesses.slice(1, this.waitingProcesses.length).map(p => p.pid) : []
+        })
+    }
+
+    protected isFirstWorkingTaskPresentAndDone() {
+        return this.waitingProcesses.length > 0 && this.waitingProcesses[0].timeLeft == 0;
+    }
+
+    protected removeFirstWorkingTask() {
+        this.waitingProcesses.shift();
+        this.processesDone++;
+    }
+
+    protected workOnFirstWorkingProcess() {
+        if (this.waitingProcesses.length > 0) {
+            this.waitingProcesses[0].timeLeft--;
+        }
+    }
+
+    protected addArrivalProcesses() {
+        let processesArriving = this.processes.filter(p => p.arrival == this.result.length);
+        this.waitingProcesses.push(...processesArriving.map(p => {
+            return {pid: this.processes.indexOf(p), timeLeft: p.cpu_time}
+        }));
     }
 }
