@@ -22,4 +22,8 @@ export class ProcessConfiguratorComponent implements OnInit {
     this.newProcessTime = 0;
     this.newProcessArrival = 0;
   }
+
+  clearProcesses() {
+    this.processService.processes = [];
+  }
 }

@@ -5,7 +5,7 @@ export type SchedulingResult = {running: number | null, waiting: number[]}[];
 
 export abstract class SchedulerArgorithm {
     protected processesDone = 0;
-    protected waitingProcesses: { pid: number, timeLeft: number }[] = [];
+    protected workingProcesses: { pid: number, timeLeft: number }[] = [];
 
     public result: SchedulingResult = []
 
@@ -51,35 +51,35 @@ export abstract class SchedulerArgorithm {
 
     protected initializeAlgorithm() {
         this.processesDone = 0;
-        this.waitingProcesses = [];
+        this.workingProcesses = [];
         this.result = [];
     }
 
     protected recordTimeSlice() {
         this.result.push({
-            running: this.waitingProcesses[0]?.pid ?? null,
-            waiting: this.waitingProcesses.length > 1 ? this.waitingProcesses.slice(1, this.waitingProcesses.length).map(p => p.pid) : []
+            running: this.workingProcesses[0]?.pid ?? null,
+            waiting: this.workingProcesses.length > 1 ? this.workingProcesses.slice(1, this.workingProcesses.length).map(p => p.pid) : []
         })
     }
 
     protected isFirstWorkingTaskPresentAndDone() {
-        return this.waitingProcesses.length > 0 && this.waitingProcesses[0].timeLeft == 0;
+        return this.workingProcesses.length > 0 && this.workingProcesses[0].timeLeft == 0;
     }
 
     protected removeFirstWorkingTask() {
-        this.waitingProcesses.shift();
+        this.workingProcesses.shift();
         this.processesDone++;
     }
 
     protected workOnFirstWorkingProcess() {
-        if (this.waitingProcesses.length > 0) {
-            this.waitingProcesses[0].timeLeft--;
+        if (this.workingProcesses.length > 0) {
+            this.workingProcesses[0].timeLeft--;
         }
     }
 
     protected addArrivalProcesses() {
         let processesArriving = this.processes.filter(p => p.arrival == this.result.length);
-        this.waitingProcesses.push(...processesArriving.map(p => {
+        this.workingProcesses.push(...processesArriving.map(p => {
             return {pid: this.processes.indexOf(p), timeLeft: p.cpu_time}
         }));
     }

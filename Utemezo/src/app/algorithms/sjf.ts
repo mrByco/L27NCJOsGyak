@@ -6,7 +6,7 @@ export class Sjf extends SchedulerArgorithm {
         this.initializeAlgorithm();
 
         while (this.processesDone < this.processes.length) {
-            console.log(this.waitingProcesses.length)
+            console.log(this.workingProcesses.length)
             this.addArrivalProcesses()
 
             if (this.isFirstWorkingTaskPresentAndDone()) {
@@ -20,6 +20,6 @@ export class Sjf extends SchedulerArgorithm {
     }
 
     private sortProcessesByTimeLeft() {
-        this.waitingProcesses = this.waitingProcesses.sort((p1, p2) => p1.timeLeft - p2.timeLeft);
+        this.workingProcesses = this.workingProcesses.sort((p1, p2) => p1.timeLeft - p2.timeLeft);
     }
 }

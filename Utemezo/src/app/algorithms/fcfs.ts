@@ -11,7 +11,7 @@ export class Fcfs extends SchedulerArgorithm {
             if (this.isFirstWorkingTaskPresentAndDone()) {
                 this.removeFirstWorkingTask();
             }
-            
+
             this.workOnFirstWorkingProcess();
             this.recordTimeSlice();
         }
