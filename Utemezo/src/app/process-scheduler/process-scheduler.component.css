@@ -1,0 +1,22 @@
+.algorithm-button {
+    padding: 10px;
+    background: transparent;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    width: 100%;
+    border: 0;
+
+    color: #3a3a3a;
+
+    transition: background-color 200ms;
+}
+
+.algorithm-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.algorithm-button-selected {
+    background: rgba(223, 242, 255, 0.5) !important;
+}

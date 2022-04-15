@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    padding: 0;
+    background: rgb(60,136,255);
+
+    background: -moz-radial-gradient(circle, rgba(60,136,255,1) 0%, rgba(87,147,255,1) 50%, rgb(105, 162, 255) 100%);
+    background: -webkit-radial-gradient(circle, rgba(60,136,255,1) 0%, rgba(87,147,255,1) 50%, rgb(103, 163, 255) 100%);
+    background: radial-gradient(circle, rgba(60,136,255,1) 0%, rgba(87,147,255,1) 50%, rgb(72, 143, 255) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3c88ff",endColorstr="#8cb9ff",GradientType=1);
+}
+
+.panel-background {
+    margin: 1rem;
+    padding: 0.7rem;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid #00000035;
+}
+
+.process-title {
+    font-weight: normal;
+    color: #505050;
+}
+

@@ -1,0 +1,7 @@
+
+<div class="container panel-background p-0">
+    <div class="d-flex align-items-center justify-content-evenly">
+        <button *ngFor="let algo of selectableAlgorithms" class="algorithm-button"
+                [ngClass]="{'algorithm-button-selected': selectedAlgorithm == algo.name}" (click)="selectAlgorithm(algo.name)">{{algo.name}}</button>
+    </div>
+</div>
