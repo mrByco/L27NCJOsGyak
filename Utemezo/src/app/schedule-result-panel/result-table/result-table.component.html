@@ -1,0 +1,82 @@
+<div class="panel-background" style="color: #484848">
+    <table>
+        <tr>
+            <th class="fitwidth">
+                PID
+            </th>
+            <th class="fitwidth">
+                Arrive
+            </th>
+            <th class="fitwidth">
+                CPU ms
+            </th>
+            <th class="fitwidth">
+                Start
+            </th>
+            <th class="fitwidth">
+                Complete
+            </th>
+            <th class="fitwidth">
+                Turnover
+            </th>
+            <th class="fitwidth">
+                Waiting time
+            </th>
+            <th class="fitwidth">
+                Response time
+            </th>
+        </tr>
+        <tr *ngFor="let processReportRow of getProcessReportRows(processService.algortihm.result, processService.algortihm.processIds)">
+            <th class="fitwidth">
+                P{{processReportRow.pid + 1}}
+            </th>
+            <th class="fitwidth">
+                {{processReportRow.arrive}}
+            </th>
+            <th class="fitwidth">
+                {{processReportRow.cpu_ms}}
+            </th>
+            <th class="fitwidth">
+                {{processReportRow.start}}
+            </th>
+            <th class="fitwidth">
+                {{processReportRow.complete}}
+            </th>
+            <th class="fitwidth">
+                {{processReportRow.turnover}}
+            </th>
+            <th class="fitwidth">
+                {{processReportRow.wait}}
+            </th>
+            <th class="fitwidth">
+                {{processReportRow.response}}
+            </th>
+        </tr>
+        <tr style="border-top: solid 1px rgba(0,0,0,0.2)">
+            <th class="fitwidth">
+                AVG
+            </th>
+            <th class="fitwidth">
+                {{getAverageProcessRow().arrive}}
+            </th>
+            <th class="fitwidth">
+                {{getAverageProcessRow().cpu_ms}}
+            </th>
+            <th class="fitwidth">
+                {{getAverageProcessRow().start}}
+            </th>
+            <th class="fitwidth">
+                {{getAverageProcessRow().complete}}
+            </th>
+            <th class="fitwidth">
+                {{getAverageProcessRow().turnover}}
+            </th>
+            <th class="fitwidth">
+                {{getAverageProcessRow().wait}}
+            </th>
+            <th class="fitwidth">
+                {{getAverageProcessRow().response}}
+            </th>
+        </tr>
+    </table>
+</div>

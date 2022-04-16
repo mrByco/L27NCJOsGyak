@@ -1,0 +1,8 @@
+.footer-base {
+    width: 100vw;
+    background: rgba(0,0,0,0.60);
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+}

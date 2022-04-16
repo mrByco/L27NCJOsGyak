@@ -8,6 +8,9 @@ import {FormsModule} from "@angular/forms";
 import { ProcessSchedulerComponent } from './process-scheduler/process-scheduler.component';
 import { ScheduleResultPanelComponent } from './schedule-result-panel/schedule-result-panel.component';
 import { UsageMatrixComponent } from './schedule-result-panel/usage-matrix/usage-matrix.component';
+import { FooterComponent } from './footer/footer.component';
+import { ResultTableComponent } from './schedule-result-panel/result-table/result-table.component';
+import {TooltipModule} from "ngx-bootstrap/tooltip";
 
 @NgModule({
   declarations: [
@@ -15,12 +18,15 @@ import { UsageMatrixComponent } from './schedule-result-panel/usage-matrix/usage
     ProcessConfiguratorComponent,
     ProcessSchedulerComponent,
     ScheduleResultPanelComponent,
-    UsageMatrixComponent
+    UsageMatrixComponent,
+    FooterComponent,
+    ResultTableComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        TooltipModule,
+    ],
   providers: [ProcessService],
   bootstrap: [AppComponent]
 })

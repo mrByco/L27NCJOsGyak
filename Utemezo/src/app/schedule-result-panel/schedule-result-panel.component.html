@@ -1,1 +1,4 @@
-<app-usage-matrix></app-usage-matrix>
+<div *ngIf="processService.algortihm?.result != null" class="d-flex flex-column">
+    <app-usage-matrix></app-usage-matrix>
+    <app-result-table class="m-auto"></app-result-table>
+</div>

@@ -7,28 +7,9 @@ import {ProcessService} from "../../services/process-service";
     templateUrl: './usage-matrix.component.html',
     styleUrls: ['./usage-matrix.component.css']
 })
-export class UsageMatrixComponent implements OnInit {
+export class UsageMatrixComponent {
 
-    constructor(public processService: ProcessService) {
-        /*this.SchedulingResult = [
-            {running: 1, waiting: []},
-            {running: 1, waiting: []},
-            {running: 1, waiting: []},
-            {running: 1, waiting: []},
-            {running: 1, waiting: [2]},
-            {running: 1, waiting: [2]},
-            {running: 1, waiting: [2]},
-            {running: 1, waiting: [2, 3]},
-            {running: 1, waiting: [2, 3]},
-            {running: 2, waiting: [3]},
-            {running: 2, waiting: [3]},
-            {running: 2, waiting: [3]},
-            {running: 3, waiting: []},
-        ];*/
-    }
-
-    ngOnInit(): void {
-    }
+    constructor(public processService: ProcessService) {}
 
     getColorForStatus(cell: ProcessStatus) {
         switch (cell){
