@@ -19,6 +19,7 @@ export abstract class SchedulerArgorithm {
         this.processes = this.processes.filter(p => p.cpu_time > 0);
         this.calculate();
         this.updateProcessUsageMatrix();
+        console.log(this.processes.length);
     }
     protected abstract calculate(): void;
 

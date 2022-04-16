@@ -1,4 +1,4 @@
 export class ProcessModel {
-    constructor(public arrival: number, public cpu_time: number) {
+    constructor(public arrival: number, public cpu_time: number, public name: string) {
     }
 }

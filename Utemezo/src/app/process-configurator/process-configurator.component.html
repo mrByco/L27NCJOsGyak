@@ -5,8 +5,10 @@
 
         <div class="d-flex flex-row">
             <div class="d-flex flex-column" style="margin-right: 1rem">
-                <h4 style="color: transparent">P0 </h4>
-                <h2 class="process-title" *ngFor="let process of processService.processes; let i = index">P{{i + 1}}:</h2>
+                <h4>Name </h4>
+                <h2 class="process-title" *ngFor="let process of processService.processes; let i = index">{{process.name}}</h2>
+                <input [(ngModel)]="newProcessName" type="text" class="form-control value-input-field" id="name" aria-describedby="name"
+                       placeholder="Arrive time">
             </div>
             <div class="d-flex flex-column ms-2">
                 <h4>Arrive</h4>
@@ -17,7 +19,7 @@
             <div class="d-flex flex-column ms-2">
                 <h4>Process time</h4>
                 <h2 class="process-title"  *ngFor="let process of processService.processes; let i = index">{{process.cpu_time}}</h2>
-                <input [(ngModel)]="newProcessTime" type="number" class="form-control value-input-field" id="cpuTime" aria-describedby="arrive"
+                <input [(ngModel)]="newProcessTime" type="number" class="form-control value-input-field" id="cpuTime" aria-describedby="time"
                        placeholder="Process time">
             </div>
             <div class="d-flex flex-column align-items-end">

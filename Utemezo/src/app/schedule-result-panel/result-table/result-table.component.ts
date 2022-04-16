@@ -55,7 +55,7 @@ export class ResultTableComponent {
 
     private avg(numbers: number[]): number {
         let count = numbers.length;
-        let sum = numbers.reduce((previousValue, currentValue) => previousValue + currentValue);
+        let sum = numbers.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
         return Math.round( sum / count * 100) / 100;
     }
 }

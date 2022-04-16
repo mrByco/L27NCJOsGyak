@@ -3,7 +3,7 @@
     <div class="d-flex">
         <div class="d-flex flex-column" style="padding-right: 10px">
             <h3 class="process-title" *ngFor="let row of processService.algortihm?.processUsageMatrix??[]; let rowIndex = index">
-                P{{processService.algortihm.processIds[rowIndex] + 1}}:
+                {{processService.algortihm.processes[rowIndex].name}}:
             </h3>
         </div>
 

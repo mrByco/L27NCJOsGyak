@@ -13,8 +13,8 @@ export class ProcessService {
 
     public fillWithRandomProcesses(processCount: number = 6){
         this.processes = Array.apply(null, Array(processCount))
-            .map(() => {
-                return new ProcessModel(Math.round(Math.random() * 15), Math.round(Math.random() * 15))
+            .map((value, index) => {
+                return new ProcessModel(Math.round(Math.random() * 15), Math.round(Math.random() * 15), "P" + index)
             });
     }
 }
