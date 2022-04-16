@@ -26,9 +26,9 @@
                 Response time
             </th>
         </tr>
-        <tr *ngFor="let processReportRow of getProcessReportRows(processService.algortihm.result, processService.algortihm.processIds)">
+        <tr *ngFor="let processReportRow of getProcessReportRows(processService.algortihm.result, processService.algortihm.processIds, getProcessNames())">
             <th class="fitwidth">
-                P{{processReportRow.pid + 1}}
+                {{processReportRow.name}}
             </th>
             <th class="fitwidth">
                 {{processReportRow.arrive}}

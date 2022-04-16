@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ProcessService} from "../../services/process-service";
 import {SchedulingResult} from "../../algorithms/scheduler-argorithm";
+import {stringify} from "@angular/compiler/src/util";
 
-export type ProcessReportRow = { pid: number, arrive: number, cpu_ms: number, start: number, complete: number, turnover: number,  wait: number, response: number };
+export type ProcessReportRow = {name: string, arrive: number, cpu_ms: number, start: number, complete: number, turnover: number,  wait: number, response: number };
 
 @Component({
     selector: 'app-result-table',
@@ -14,12 +15,12 @@ export class ResultTableComponent {
     constructor(public processService: ProcessService) {
     }
 
-    public getProcessReportRows(result: SchedulingResult, pids: number[]) {
-        return pids.map(p => this.getProcessReportForSingleProcess(result, p));
+    public getProcessReportRows(result: SchedulingResult, pid: number[], names: string[]) {
+        return names.map((name, index) => this.getProcessReportForSingleProcess(result, pid[index], name));
     }
 
-    public getProcessReportForSingleProcess(result: SchedulingResult, pid: number): ProcessReportRow {
-        let row: ProcessReportRow = {pid: pid, arrive: NaN, cpu_ms: 0, start: NaN, complete: NaN, wait: 0, response: NaN, turnover: NaN};
+    public getProcessReportForSingleProcess(result: SchedulingResult, pid: number, name: string): ProcessReportRow {
+        let row: ProcessReportRow = {name: name, arrive: NaN, cpu_ms: 0, start: NaN, complete: NaN, wait: 0, response: 0, turnover: NaN};
         for (let i: number = 0; i < result.length; i++) {
             let resultLine = result[i];
             if (isNaN(row.arrive)) {
@@ -33,15 +34,16 @@ export class ResultTableComponent {
                 row.complete = i;
             }
             if (resultLine.waiting.includes(pid)) row.wait++;
+            if (resultLine.waiting.includes(pid) && isNaN(row.start)) row.response++;
         }
         row.turnover = row.complete - row.arrive;
         return row;
     }
 
     public getAverageProcessRow(): ProcessReportRow {
-        let rows = this.getProcessReportRows(this.processService.algortihm.result, this.processService.algortihm.processIds);
+        let rows = this.getProcessReportRows(this.processService.algortihm.result, this.processService.algortihm.processIds, this.processService.processes.map(p => p.name));
         return {
-            pid: NaN,
+            name: "",
             start:  this.avg(rows.map(r => r.start)),
             arrive:  this.avg(rows.map(r => r.arrive)),
             wait:  this.avg(rows.map(r => r.wait)),
@@ -52,6 +54,8 @@ export class ResultTableComponent {
 
         }
     }
+
+    public getProcessNames() { return this.processService.processes.map(p => p.name);}
 
     private avg(numbers: number[]): number {
         let count = numbers.length;
