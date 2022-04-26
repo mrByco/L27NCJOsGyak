@@ -1,6 +1,6 @@
-import {SchedulerArgorithm} from "./scheduler-argorithm";
+import {SchedulerAlgorithm} from "./scheduler-algorithm";
 
-export class Fcfs extends SchedulerArgorithm {
+export class Fcfs extends SchedulerAlgorithm {
 
     calculate(): void {
         this.initializeAlgorithm();

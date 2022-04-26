@@ -1,11 +1,13 @@
 import {ProcessModel} from "./process-model";
-import {SchedulerArgorithm} from "../algorithms/scheduler-argorithm";
+import {SchedulerAlgorithm} from "../algorithms/scheduler-algorithm";
 import {Fcfs} from "../algorithms/fcfs";
 
 export class ProcessService {
 
+    private _unix_mode = false;
+
     public processes: ProcessModel[] = [];
-    public algortihm: SchedulerArgorithm = new Fcfs([]);
+    public algorithm: SchedulerAlgorithm = new Fcfs([]);
 
     constructor() {
         this.fillWithRandomProcesses();

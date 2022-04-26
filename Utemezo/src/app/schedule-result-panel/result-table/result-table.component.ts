@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ProcessService} from "../../services/process-service";
-import {SchedulingResult} from "../../algorithms/scheduler-argorithm";
+import {SchedulingResult} from "../../algorithms/scheduler-algorithm";
 import {stringify} from "@angular/compiler/src/util";
 
 export type ProcessReportRow = {name: string, arrive: number, cpu_ms: number, start: number, complete: number, turnover: number,  wait: number, response: number };
@@ -41,7 +41,7 @@ export class ResultTableComponent {
     }
 
     public getAverageProcessRow(): ProcessReportRow {
-        let rows = this.getProcessReportRows(this.processService.algortihm.result, this.processService.algortihm.processIds, this.processService.processes.map(p => p.name));
+        let rows = this.getProcessReportRows(this.processService.algorithm.result, this.processService.algorithm.processIds, this.processService.processes.map(p => p.name));
         return {
             name: "",
             start:  this.avg(rows.map(r => r.start)),

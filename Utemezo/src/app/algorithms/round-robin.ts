@@ -1,7 +1,7 @@
 import { ProcessModel } from "../services/process-model";
-import {SchedulerArgorithm} from "./scheduler-argorithm";
+import {SchedulerAlgorithm} from "./scheduler-algorithm";
 
-export class RoundRobin extends SchedulerArgorithm {
+export class RoundRobin extends SchedulerAlgorithm {
     private currentTimeSliceAge: number = 0;
 
     constructor(tasks: ProcessModel[], private timeSliceSize: number = 5) {

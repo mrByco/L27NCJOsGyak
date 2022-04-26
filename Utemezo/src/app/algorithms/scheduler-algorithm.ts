@@ -3,13 +3,13 @@ import {ProcessStatus} from "../schedule-result-panel/usage-matrix/process-statu
 
 export type SchedulingResult = {running: number | null, waiting: number[]}[];
 
-export abstract class SchedulerArgorithm {
+export abstract class SchedulerAlgorithm {
     protected processesDone = 0;
     protected workingProcesses: { pid: number, timeLeft: number }[] = [];
 
     public result: SchedulingResult = []
 
-    constructor(public processes: ProcessModel[]){
+    constructor(public processes: ProcessModel[], public readonly unix_mode: boolean = false){
     }
 
     public processUsageMatrix: ProcessStatus[][] = [];

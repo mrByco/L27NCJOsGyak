@@ -1,6 +1,6 @@
-import {SchedulerArgorithm} from "./scheduler-argorithm";
+import {SchedulerAlgorithm} from "./scheduler-algorithm";
 
-export class Sjf extends SchedulerArgorithm {
+export class Sjf extends SchedulerAlgorithm {
 
     calculate(): void {
         this.initializeAlgorithm();
