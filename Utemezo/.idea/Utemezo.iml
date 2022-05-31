@@ -6,6 +6,12 @@
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/.angular/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Utemezo-win32-x64/resources/app/src/app/unix" />
+      <excludeFolder url="file://$MODULE_DIR$/Utemezo-win32-x64/resources/app/.angular" />
+      <excludeFolder url="file://$MODULE_DIR$/Utemezo-win32-x64/resources/app/.angular/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Utemezo-win32-x64/resources/app/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/Utemezo-win32-x64/resources/app/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

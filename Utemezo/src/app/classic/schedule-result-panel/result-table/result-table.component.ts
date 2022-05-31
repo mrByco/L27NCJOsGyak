@@ -16,7 +16,8 @@ export class ResultTableComponent {
     }
 
     public getProcessReportRows(result: SchedulingResult, pid: number[], names: string[]) {
-        return names.map((name, index) => this.getProcessReportForSingleProcess(result, pid[index], name));
+        return names.map((name, index) => this.getProcessReportForSingleProcess(result, pid[index], name))
+            .sort((a, b) => a.start < b.start ? -1 : 1);
     }
 
     public getProcessReportForSingleProcess(result: SchedulingResult, pid: number, name: string): ProcessReportRow {

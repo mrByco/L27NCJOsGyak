@@ -1,5 +1,7 @@
 import {ProcessModel} from "../services/process-model";
 import {ProcessStatus} from "../schedule-result-panel/usage-matrix/process-status";
+import {getLocaleCurrencyName} from "@angular/common";
+import {compareNumbers} from "@angular/compiler-cli/src/version_helpers";
 
 export type SchedulingResult = {running: number | null, waiting: number[]}[];
 
@@ -12,7 +14,7 @@ export abstract class SchedulerAlgorithm {
     constructor(public processes: ProcessModel[], public readonly unix_mode: boolean = false){
     }
 
-    public processUsageMatrix: ProcessStatus[][] = [];
+    public processUsageMatrix: {rows: {label: string, p_index: number, cells: ProcessStatus[]}[]} = {rows: []};
     public processIds: number[] = [];
 
     public process(){
@@ -32,10 +34,9 @@ export abstract class SchedulerAlgorithm {
                     : previousValue, []);
         this.processIds = this.processIds.sort();
 
-
         for (let rowIndex = 0; rowIndex < this.processIds.length; rowIndex++) {
             let currentProcessId = this.processIds[rowIndex];
-            this.processUsageMatrix[rowIndex] = Array.apply(null, Array(this.result.length))
+            let cells = Array.apply(null, Array(this.result.length))
                 .map((element, index) => {
                     if (!this.result) return ProcessStatus.NotPresent;
 
@@ -46,8 +47,19 @@ export abstract class SchedulerAlgorithm {
 
                     return ProcessStatus.NotPresent
                 });
+
+            this.processUsageMatrix.rows.push({label: this.processes[currentProcessId].name, p_index: currentProcessId, cells: cells});
         }
         console.log(this.processUsageMatrix);
+
+        this.processUsageMatrix.rows = this.processUsageMatrix.rows
+            .sort((a, b) =>
+                this.getFirstRunIndexForProcess(a.p_index) < this.getFirstRunIndexForProcess(b.p_index) ? -1 : 1);
+    }
+
+    public getFirstRunIndexForProcess(pid: number): number{
+        if (this.result == null) return 0;
+        else return this.result.findIndex(i => i.running == pid);
     }
 
     protected initializeAlgorithm() {
